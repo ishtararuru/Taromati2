@@ -1,6 +1,6 @@
-///////// 文　ゴーストテンプレート
-///////// マウス入力関连辞书
-///////// written by umeici.
+/////////文　ゴーストテンプレート
+/////////マウス入力関连辞书
+/////////written by umeici.
 //**** 抚で反応 *************************************************************************
 //---- OnMouseMoveイベント --------------------------------------------------------------
 OnMouseMove{
@@ -90,7 +90,7 @@ TalkSakuraHeadPat.0.0{
 }
 TalkSakuraHeadPat.0{
 	"\0\s[9]…\w9…\w9…\e"
-        "\0\s[33]…哎呀…\e"
+	"\0\s[33]…哎呀…\e"
 }
 TalkSakuraHeadPat.1.0{
 	"\0\s[1]怎、\w9\w5怎么了吗？\e"
@@ -170,10 +170,10 @@ TalkSakuraFacePat{
 }
 //---- 胸抚で ---------------------------------------------------------------------------------------------------------
 TalkSakuraBustPat.0{
-_phase = GetPhase_bedroom
-if _phase < 4{intimacy -= 1}
-else{intimacy += 2
-}
+	_phase = GetPhase_bedroom
+	if _phase < 4{intimacy -= 1}
+	else{intimacy += 2
+		}
 	"\0\s[35]唔…\e"
 	"\0\s[35]…\w9…\w9…\1\s[12]你就这么喜欢摸女生胸部吗……\0\e"
 	"\0\![raise,OnPlaySound,se_01.wav]\s[35]啊…\e"
@@ -290,18 +290,18 @@ OnMouseDoubleClick0{
 				TalkSakuraFaceClick
 			}
 		}
-			if reference4 == "Bust"{
-				bustclickflag = 1
-				bustclicktime = 0
-				_talk = "TalkSakuraBustClick.%(GetPhase).%(bustclickcount)"
-				if ISFUNC(_talk) == 1{
-					EVAL(_talk)
-					bustclickcount++
-				}
-				else{
-					EVAL("TalkSakuraBustClick.%(GetPhase)")
-				}
+		if reference4 == "Bust"{
+			bustclickflag = 1
+			bustclicktime = 0
+			_talk = "TalkSakuraBustClick.%(GetPhase).%(bustclickcount)"
+			if ISFUNC(_talk) == 1{
+				EVAL(_talk)
+				bustclickcount++
 			}
+			else{
+				EVAL("TalkSakuraBustClick.%(GetPhase)")
+			}
+		}
 		elseif reference4 == "Hand"{
 			_talk = "TalkSakuraHandClick.%(GetPhase)"
 			if ISFUNC(_talk) == 1{
@@ -484,7 +484,7 @@ TalkSakuraHandLead.0{
 }
 TalkSakuraHandLead{
 	"\0\s[29]…\w9…\w9…\e"
-    "\0\s[29]\![raise,OnPlaySound,se_05.wav]行きます\w9…"
+	"\0\s[29]\![raise,OnPlaySound,se_05.wav]行きます\w9…"
 	"\0\s[26]要带橘花去哪呢？\e"
 }
 OnMouseClick{

@@ -129,19 +129,19 @@ OnTeachAdd{
 	"已经记录,记录文件在pseudoAI\\userteach.ai中。\n[150]\![*]\q[继续添加,OnNewTeachAdd]\n\![*]\q[返回对话,OnBackToTalk]\e"
 }
 OnAISave{
-	if FATTRIB('pseudoAI\userteach.ai')!=-1
+	if FILEEXIST('pseudoAI\userteach.ai')
 		_temp=FCOPY('pseudoAI\userteach.ai','profile')
-	if FATTRIB('pseudoAI\logiclearn.ai')!=-1
+	if FILEEXIST('pseudoAI\logiclearn.ai')
 		_temp=FCOPY('pseudoAI\logiclearn.ai','profile')
 }
 OnAILoad{
-	if FATTRIB('profile\userteach.ai')!=-1
+	if FILEEXIST('profile\userteach.ai')
 		_temp=FCOPY('profile\userteach.ai','pseudoAI')
 	else{
 		_temp=FULLNAMEFCOPY('pseudoAI\userteach.ai.base','profile\userteach.ai')
 		OnSQLLoad
 	}
-	if FATTRIB('profile\logiclearn.ai')!=-1
+	if FILEEXIST('profile\logiclearn.ai')
 		_temp=FCOPY('profile\logiclearn.ai','pseudoAI')
 	else{
 		_temp=FULLNAMEFCOPY('pseudoAI\logiclearn.ai.base','profile\logiclearn.ai')

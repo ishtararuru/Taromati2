@@ -1605,21 +1605,23 @@ OnPasteToExp{
 	CalculatorShow
 }
 OnCopy{
-		_txt=reference0
-		if _argc>0{
+	_txt=reference0
+	if _argc>0{
 		_txt=""
 		for _i=0;_i<_argc-1;_i++{
-		_txt+=_argv[_i]+','
+			_txt+=_argv[_i]+','
 		}
 		_txt+=_argv[_argc-1];ts=_txt
 	}
 	FUNCTIONEX('saori\textcopy.dll', _txt)
+	"\0\s[0]文本“%(REPLACE(_txt,'\','\\'))”\n/
+	已复制"
 }
 OnCopyDat{
-	FUNCTIONEX('saori\textcopy.dll', "%(reference0)")
+	_t=OnCopy(reference0)
 	"\0\s[0]\b[2]橘花已成功复制结果『%(reference0)』到剪贴板了喔?\x"
 	--
-		CalculatorShow
+	CalculatorShow
 }
 lastIndexOf{
 	_String=_argv[0]
@@ -1677,7 +1679,7 @@ OnFileEat{
 		_file=_argv[0]
 	all_file_size+=FSIZE(_file)
 	if !FDEL(_file)
-		'\s[20]好像出了什么问题？\n%(reference0)\e'
+		"\s[20]好像出了什么问题？\n%(reference0)\e"
 }
 OnFileEatEnd{
 	if kikkastm<kikkastmmax
@@ -1796,7 +1798,7 @@ OnReNameGet{
 				_ext=TOUPPER(_ext)
 			elseif renamecondition[_j][2]==3
 				_ext=TOLOWER(_ext)
-		        }
+			}
 			_str=_replace
 		}
 	}
@@ -1819,7 +1821,7 @@ TXTREPLACE{
 					_result=RE_REPLACE(_str,_ori,_rep)
 	}
 	else{
-	 _result=RE_REPLACE(_str,_ori,_rep)
+		_result=RE_REPLACE(_str,_ori,_rep)
 	}
 	_result
 }
@@ -2607,12 +2609,12 @@ OAD/
 {
 	_save_dir=GETENV('USERPROFILE')
 	_t=''
-	if FATTRIB(_save_dir+'\K_I_K_K_A')!=-1{
+	if FILEEXIST(_save_dir+'\K_I_K_K_A'){
 		_t=DELDIR('profile')
 		_t=DIRCOPY(_save_dir+'\K_I_K_K_A','profile')
 		_t=FUNHIDDEN('profile')
 	}
-	if FATTRIB(_save_dir+'\K_confing.cfg')!=-1{//辣鸡aya，如果用elc写根本不用这么麻烦
+	if FILEEXIST(_save_dir+'\K_confing.cfg'){//辣鸡aya，如果用elc写根本不用这么麻烦
 		//重构一个临时shiori
 		_t=FULLNAMEFCOPY(_save_dir+'\K_confing.cfg','taya_variable.cfg')
 		_t=FULLNAMEFCOPY('aya.dll','taya.dll')
@@ -2648,7 +2650,7 @@ AVE/
 	_t=DELDIR(_save_dir+'\K_I_K_K_A')
 	_t=DIRCOPY('profile',_save_dir+'\K_I_K_K_A')
 	_t=FHIDDEN(_save_dir+'\K_I_K_K_A')
-	if FATTRIB('taya.dll')!=-1{
+	if FILEEXIST('taya.dll'){
 		_t=FDEL('taya_variable.cfg')
 		_t=FDEL('taya.dll')
 		_t=FDEL('taya.txt')
@@ -3506,8 +3508,8 @@ OnWebTitleLoad{
 OnChangeCode{
 	_txt="\C\![quicksession,true]\c\0\b[2]\![set,choicetimeout,0]"
 	_txt+="请将内容复制到剪贴板后点选【简->繁转换】或【繁->简转换】\n"
-	_txt+="\q[◇【简->繁转换】,OnCopyTS,0]\n"
-	_txt+="\q[◇【繁->简转换】,OnCopyTS,1]\n"
+	_txt+="\q[◇【简->繁转换】,OnCopyTS,traditional]\n"
+	_txt+="\q[◇【繁->简转换】,OnCopyTS,simplified]\n"
 	_txt+="\q[◇返回上一层,OnOpenMenu,3,0]"
 	_txt
 }
@@ -3515,20 +3517,5 @@ OnCopyTS{
 	_ts=reference0
 	if _argc>0
 		_ts=_argv[0]
-	if _ts==0
-		OnTS(OnPaste,"traditional")
-	else
-		OnTS(OnPaste,"simplified")
-}
-OnTS{
-	_txt=reference0
-	_ts=reference1
-	if _argc>0{
-		_txt=_argv[0]
-		_ts=_argv[1]
-	}
-		_text = FUNCTIONEX('saori\ChConverter.dll',_ts,_txt)//繁体化
-		FUNCTIONEX('saori\textcopy.dll',_text)
-		_txt='橘花已经将内容粘贴到剪贴板了哦'
-	_txt
+	OnCopy(FUNCTIONEX('saori\ChConverter.dll',_ts,OnPaste))
 }

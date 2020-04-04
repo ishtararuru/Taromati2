@@ -48,8 +48,8 @@ PlayPuzzleReset{//拼圖初始化
 	iPuzzleStep = 0//步數
 }
 PlayPuzzleShow{//拼圖顯示
-        "\C\![quicksession,true]\c"
-       --
+	"\C\![quicksession,true]\c"
+	--
 	_tempstr = ""
 	for _i = 0; _i < PUZZLE_X; _i++ {//行
 		for _j = 0; _j < PUZZLE_X; _j++ {//列
@@ -74,7 +74,7 @@ PlayPuzzleShow{//拼圖顯示
 	if PlayPuzzleWin == 1 {//獲勝
 		"\0\s[5]\b[2]拼图完成！共用了%(iPuzzleStep)步。\_l[14,26]\_b[FILE_PATH/%(MapIdx),inline,--option=opaque]"
 		--
- 		"\n[150]%(username)好厉害～\n"
+		"\n[150]%(username)好厉害～\n"
 	}
 	else {
 		"\![set,choicetimeout,0]\![set,autoscroll,disable]\0\s[40]\b[2]第%(iPuzzleStep)步\n[150]%(_tempstr)"

@@ -17,7 +17,7 @@ ClearKikkaStockVar{
 }
 OnKikkaStockOver{
 	running=""
-	ClearKikkaStockVar()
+	ClearKikkaStockVar
 }
 Option.Creat{
 	_name=_argv[0]
@@ -33,7 +33,7 @@ OnOption.Input{
 	stockmode=1
 	stockid=0
 	if reference0=="OnStockSearch"
-		 kikkastock=3
+		kikkastock=3
 	"\![open,inputbox,%(reference0),-1,请输入股票数字代码] "
 }
 OnStockSearch{
@@ -57,12 +57,12 @@ OnStockSearch{
 		//_stocks="sh600325\,sh601007\,sh601008"
 		_stocks=_stocklist
 	}
- 	elseif _argv[1]=='stock'||stockmode{
-			_stocks=OnStockNameCheck(_name);t=_name
-			 if stockmode==1{
-				stock=_stocks
-				 stockmode=2
-			}
+	elseif _argv[1]=='stock'||stockmode{
+		_stocks=OnStockNameCheck(_name);t=_name
+		if stockmode==1{
+			stock=_stocks
+			stockmode=2
+		}
 	}
 	_needIndex=0
 	_showapi_appid="6489"
@@ -81,15 +81,15 @@ OnStockSearch{
 	_stocks="sh600325\,sh601007\,sh601008"
 	_name="http://hq.sinajs.cn/list=%(_stocks)"
 	//"minurl":"http://image.sinajs.cn/newchart/min/n/sh601009.gif",/*分时K线图*/
- //       "dayurl":"http://image.sinajs.cn/newchart/daily/n/sh601009.gif",/*日K线图*/
-  //      "weekurl":"http://image.sinajs.cn/newchart/weekly/n/sh601009.gif",/*周K线图*/
-   //     "monthurl":"http://image.sinajs.cn/newchart/monthly/n/sh601009.gif"/*月K线图*/
+	//"dayurl":"http://image.sinajs.cn/newchart/daily/n/sh601009.gif",/*日K线图*/
+	//"weekurl":"http://image.sinajs.cn/newchart/weekly/n/sh601009.gif",/*周K线图*/
+	//"monthurl":"http://image.sinajs.cn/newchart/monthly/n/sh601009.gif"/*月K线图*/
 	if _stocks!=""
 	"\C\0\b[2]\![excute,http-get,%(_name),--param-charset=UTF-8,--file=kikkastock.kst,--timeout=200,--async=kikkastock]"
 	elseif (hour>9&&(hour<=11&&minute<=30))||(hour>=13&&hour<15)||reference1=='get'
-"\C\0\b[2]\![excute,http-get,%(_name),--param-charset=UTF-8,--file=kikkastock.kst,--timeout=200,--async=kikkastock]"
-		//else
-		//"\C\0\b[2]"
+		"\C\0\b[2]\![excute,http-get,%(_name),--param-charset=UTF-8,--file=kikkastock.kst,--timeout=200,--async=kikkastock]"
+	//else
+	//"\C\0\b[2]"
 }
 OnStockNameCheck{
 	_name=_argv[0]
@@ -127,7 +127,7 @@ OnKikkaStockSelect{
 		_股票代码=_txt[0,'=']
 		_股票代码=SUBSTR(_股票代码,0,8)
 		_股票代码=_txt[11]
-		 _股票名字=_txt[18]
+		_股票名字=_txt[18]
 		_涨幅=_txt[16]
 		_涨跌=_txt[15]
 		_今日开盘价=_txt[20]
@@ -142,10 +142,10 @@ OnKikkaStockSelect{
 		_成交金额=TOINT(_txt[32])/100000000.0
 		_成交金额=OnDelFloatIndex(_成交金额,2)
 		if _i<_n
-		_t+="\__q[OnKikkaStockFound,%(_股票代码),$,%(_i)]"+_股票名字+"\__q"+"\_l[%(20+1*45)]"+_当前价格+"\_l[%(20+2*45)]"+_涨幅+"%\_l[%(20+3*45)]"+_涨跌+"\_l[%(20+4*45)]"+_今日开盘价+"\_l[%(20+5*45)]"+_昨日收盘价+"\n"
+			_t+="\__q[OnKikkaStockFound,%(_股票代码),$,%(_i)]"+_股票名字+"\__q"+"\_l[%(20+1*45)]"+_当前价格+"\_l[%(20+2*45)]"+_涨幅+"%\_l[%(20+3*45)]"+_涨跌+"\_l[%(20+4*45)]"+_今日开盘价+"\_l[%(20+5*45)]"+_昨日收盘价+"\n"
 		_i++
 	}
-			_股票代码=reference0
+	_股票代码=reference0
 	_t+="\q[返回,OnKikkaStockMenu]     \q[刷新,OnKikkaStockSelect,'fresh']      "
 	_t+=Option.InputCreat("查询","OnStockSearch")
 	_t
@@ -168,7 +168,7 @@ OnKikkaStockFound{
 	SETDELIM(_stocklist,'*')
 	_stock=_stocklist[stockid]
 	_txt=_stock
-	 _股票名字=_txt[18]
+	_股票名字=_txt[18]
 	_涨幅=_txt[16]
 	_涨跌=_txt[15]
 	_今日开盘价=_txt[20]
@@ -326,7 +326,7 @@ OnKikkaStockFile.Read{
 					}
 					_txt+='*'
 				}
-			_txt+='|'
+				_txt+='|'
 			}
 		}
 	}
@@ -356,7 +356,7 @@ OnKikkaStockList.Write{
 	FWRITE(_file,_buff)
 	foreach _txt;_buff{
 		if _buff!=""&&_buff!=-1
-		FWRITE(_file,_buff)
+			FWRITE(_file,_buff)
 	}
 	FCLOSE(_file)
 	FCHARSET(1)

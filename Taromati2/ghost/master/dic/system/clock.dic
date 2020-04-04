@@ -1,6 +1,6 @@
 ///////////////////////////////////////////
-////////// 闹钟功能辞书
-////////// written by forjane 2009.09.23
+//////////闹钟功能辞书
+//////////written by forjane 2009.09.23
 ///////////////////////////////////////////
 //**** 时间イベント ***************************************************************************************************
 OnSecondChange{
@@ -214,7 +214,7 @@ OnAlarmMenu{
 }
 AlarmMenu{
 	_txt = "\_q\f[bold,true]\0闹钟功能\f[bold,default]\n\n[half]"
-	   _txt="\![quicksession,1]\![set,choicetimeout,0]"
+	_txt="\![quicksession,1]\![set,choicetimeout,0]"
 	if ISVAR("alarmset") == 0 {
 		alarmset = IARRAY
 		alarmset[0] = "OFF"
@@ -484,12 +484,12 @@ daysfromdate{
 			}
 			_fm=12
 		}
-	else {
-		if _fy%4==0 && _fy % 100 != 0 ||_fy % 400 == 0
-			_days--
-		_days-=365
-	}
-	_fy--
+		else {
+			if _fy%4==0 && _fy % 100 != 0 ||_fy % 400 == 0
+				_days--
+			_days-=365
+		}
+		_fy--
 	}
 	_days
 }
@@ -581,8 +581,8 @@ GetGMTDateTime{
 	//把闰年的年份数计算出来
 	_RInt = 0
 	for _i = 1970; _i < _iYear; _i++{
-	    if _i % 4 == 0&&_i % 100 != 0 ||_i % 400 == 0
-	        _RInt = _RInt + 1
+		if _i % 4 == 0&&_i % 100 != 0 ||_i % 400 == 0
+			_RInt = _RInt + 1
 	}
 	//计算文件创建的时间(几时)
 	_iHour = ((_Value % (365 * 24 * 60 * 60)) % (24 * 60 * 60)) / (60 * 60)
@@ -735,7 +735,7 @@ AgendaMonitor{
 		_eventbegindate=(_event[1,'	'],_event[2,'	'],_event[3,'	'],_event[4,'	'],_event[5,'	'])
 		_eventenddate=(_event[7,'	'],_event[8,'	'],_event[9,'	'],_event[10,'	'],_event[11,'	'])
 		if _eventrepeat
-		_eventtemp+=_event+'|'
+			_eventtemp+=_event+'|'
 	}
 	for _i=0;_i<30;_i++{
 		_year=daystodate(year,month,day,_i)[0]
@@ -841,12 +841,12 @@ EventRemindCheck{
 	_Tb=_TB
 	if _argv[1]=="getrepeat"{
 		if _eventrepeat<4
-		_Ta=_tc+_t*24*60*60-(_tc-_TA)%(_t*24*60*60)
+			_Ta=_tc+_t*24*60*60-(_tc-_TA)%(_t*24*60*60)
 		else{
 			_t=(GETSECCOUNT(_eventbegindate[0],_eventbegindate[1],_eventbegindate[2],0,hour,minute,0),GETSECCOUNT(_eventbegindate[0],_eventbegindate[1],_eventbegindate[2],0,hour,minute,0))[_eventrepeat-4]
 			_x=GETSECCOUNT(year,month+1,_eventbegindate[2],0,hour,minute,0)
 			if month==12
-			_x=GETSECCOUNT(year+1,1,_eventbegindate[2],0,hour,minute,0)
+				_x=GETSECCOUNT(year+1,1,_eventbegindate[2],0,hour,minute,0)
 			_tt=(_x,GETSECCOUNT(_eventbegindate[0]+1,_eventbegindate[1],_eventbegindate[2],0,hour,minute,0))[_eventrepeat-4]
 			_Ta=_tc+_tt-_t-(_tc-_TA)%(_tt-_t)
 		}
@@ -868,7 +868,7 @@ EventRemindCheck{
 		}
 		elseif _tc>_ta&&(_tc+_T[_eventremind]==_t)&&_tc<=_td{//提醒时间大于1天前
 			_Ta=_TA+_tc-_ta+_T[_eventremind]
-			_Tb=_TB+_tc-_ta+_T[_eventremind];
+			_Tb=_TB+_tc-_ta+_T[_eventremind]
 			t=(_TC+_T[_eventremind],_TA)
 		}
 	}
@@ -893,7 +893,7 @@ EventRemindCheck{
 		}
 		elseif _tc>_ta&&(_tc+_T[_eventseremind]==_t)&&_tc<=_td{
 			_Ta=_TA+_tc-_ta+_T[_eventseremind]
-			_Tb=_TB+_tc-_ta+_T[_eventseremind];
+			_Tb=_TB+_tc-_ta+_T[_eventseremind]
 		}
 	}
 	if _eventseremind{

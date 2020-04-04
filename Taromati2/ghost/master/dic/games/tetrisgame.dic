@@ -4,7 +4,7 @@ OnNewGame{//游戏入口
 	_txt = "\C\![quicksession,true]\c\0\s[26]\b[2]"
 	CleartetrisVar
 	playingtetris=1
-        running="playingtetris"
+	running="playingtetris"
 	Started = 1
 	GameOver=0
 	Paused=0
@@ -66,10 +66,10 @@ FormKeyDown{//键盘输入
 			when "space"  {  btm=btmCW ;}
 			when "return"  {  btm=btmCCW ;}
 		}
-			if btm{
-				_txt+=Tetris.Move(btm)
-				_txt+=CheckGameStatus
-			}
+		if btm{
+			_txt+=Tetris.Move(btm)
+			_txt+=CheckGameStatus
+		}
 	}
 	if playingtetris
 		_txt+=OnPaintBox1
@@ -77,36 +77,37 @@ FormKeyDown{//键盘输入
 }
 TTetrisUnits{//方块数据
 	BaseUnits =  /
-		( /
-		((((0,0,0,0),(0,0,0,0),(1,1,1,1),(0,0,0,0)),/
-		((0,0,1,0),(0,0,1,0),(0,0,1,0),(0,0,1,0)),/
-		((0,0,0,0),(0,0,0,0),(1,1,1,1),(0,0,0,0)),/
-		((0,0,1,0),(0,0,1,0),(0,0,1,0),(0,0,1,0)))),/
-		((((0,0,0,0),(0,0,2,0),(0,2,2,2),(0,0,0,0)),/
-		((0,0,2,0),(0,0,2,2),(0,0,2,0),(0,0,0,0)),/
-		((0,0,0,0),(0,2,2,2),(0,0,2,0),(0,0,0,0)),/
-		((0,0,2,0),(0,2,2,0),(0,0,2,0),(0,0,0,0)))),/
-		((((0,0,0,0),(0,0,0,3),(0,3,3,3),(0,0,0,0)),/
-		((0,0,3,0),(0,0,3,0),(0,0,3,3),(0,0,0,0)),/
-		((0,0,0,0),(0,3,3,3),(0,3,0,0),(0,0,0,0)),/
-		((0,3,3,0),(0,0,3,0),(0,0,3,0),(0,0,0,0)))),/
-		((((0,0,0,0),(0,4,0,0),(0,4,4,4),(0,0,0,0)),/
-		((0,0,4,4),(0,0,4,0),(0,0,4,0),(0,0,0,0)),/
-		((0,0,0,0),(0,4,4,4),(0,0,0,4),(0,0,0,0)),/
-		((0,0,4,0),(0,0,4,0),(0,4,4,0),(0,0,0,0)))),/
-		((((0,0,5,0),(0,5,5,0),(0,5,0,0),(0,0,0,0)),/
-		((0,0,0,0),(0,5,5,0),(0,0,5,5),(0,0,0,0)),/
-		((0,0,5,0),(0,5,5,0),(0,5,0,0),(0,0,0,0)),/
-		((0,0,0,0),(0,5,5,0),(0,0,5,5),(0,0,0,0)))),/
-		((((0,0,6,0),(0,0,6,6),(0,0,0,6),(0,0,0,0)),/
-		((0,0,0,0),(0,0,6,6),(0,6,6,0),(0,0,0,0)),/
-		((0,0,6,0),(0,0,6,6),(0,0,0,6),(0,0,0,0)),/
-		((0,0,0,0),(0,0,6,6),(0,6,6,0),(0,0,0,0)))),/
-		((((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)),/
-		((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)),/
-		((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)),/
-		((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)))),/
-		)
+	( /
+	((((0,0,0,0),(0,0,0,0),(1,1,1,1),(0,0,0,0)),/
+	((0,0,1,0),(0,0,1,0),(0,0,1,0),(0,0,1,0)),/
+	((0,0,0,0),(0,0,0,0),(1,1,1,1),(0,0,0,0)),/
+	((0,0,1,0),(0,0,1,0),(0,0,1,0),(0,0,1,0)))),/
+	((((0,0,0,0),(0,0,2,0),(0,2,2,2),(0,0,0,0)),/
+	((0,0,2,0),(0,0,2,2),(0,0,2,0),(0,0,0,0)),/
+	((0,0,0,0),(0,2,2,2),(0,0,2,0),(0,0,0,0)),/
+	((0,0,2,0),(0,2,2,0),(0,0,2,0),(0,0,0,0)))),/
+	((((0,0,0,0),(0,0,0,3),(0,3,3,3),(0,0,0,0)),/
+	((0,0,3,0),(0,0,3,0),(0,0,3,3),(0,0,0,0)),/
+	((0,0,0,0),(0,3,3,3),(0,3,0,0),(0,0,0,0)),/
+	((0,3,3,0),(0,0,3,0),(0,0,3,0),(0,0,0,0)))),/
+	((((0,0,0,0),(0,4,0,0),(0,4,4,4),(0,0,0,0)),/
+	((0,0,4,4),(0,0,4,0),(0,0,4,0),(0,0,0,0)),/
+	((0,0,0,0),(0,4,4,4),(0,0,0,4),(0,0,0,0)),/
+	((0,0,4,0),(0,0,4,0),(0,4,4,0),(0,0,0,0)))),/
+	((((0,0,5,0),(0,5,5,0),(0,5,0,0),(0,0,0,0)),/
+	((0,0,0,0),(0,5,5,0),(0,0,5,5),(0,0,0,0)),/
+	((0,0,5,0),(0,5,5,0),(0,5,0,0),(0,0,0,0)),/
+	((0,0,0,0),(0,5,5,0),(0,0,5,5),(0,0,0,0)))),/
+	((((0,0,6,0),(0,0,6,6),(0,0,0,6),(0,0,0,0)),/
+	
+	((0,0,0,0),(0,0,6,6),(0,6,6,0),(0,0,0,0)),/
+	((0,0,6,0),(0,0,6,6),(0,0,0,6),(0,0,0,0)),/
+	((0,0,0,0),(0,0,6,6),(0,6,6,0),(0,0,0,0)))),/
+	((((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)),/
+	((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)),/
+	((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)),/
+	((0,0,0,0),(0,7,7,0),(0,7,7,0),(0,0,0,0)))),/
+	)
 }
 OnPaintBox1{//图形显示
 	_txt="\C\![quicksession,true]\c\b[2]\![set,choicetimeout,0]"
@@ -118,7 +119,7 @@ OnPaintBox1{//图形显示
 		for _x=0; _x<MapXsize; _x++{
 			if DispBuffer[_y*MapXsize+_x]{
 				_n=DispBuffer[_y*MapXsize+_x]
-					_txt+=Drawtetris(0,_n,_x,_y)
+				_txt+=Drawtetris(0,_n,_x,_y)
 			}
 		}
 	}
@@ -126,7 +127,7 @@ OnPaintBox1{//图形显示
 		for _x=0; _x<4; _x++{
 			if IncmUnit[IncmUnit.r*16+_y*4+_x]>0{
 				_n=IncmUnit[IncmUnit.r*16+_y*4+_x]
-					_txt+=Drawtetris(1,_n,_x,_y)
+				_txt+=Drawtetris(1,_n,_x,_y)
 			}
 		}
 	}
@@ -213,51 +214,51 @@ DispTetris{//方块处理
 Tetris.Move{//方块移动
 	_txt=""
 	iMdir=_argv[0]
-		if Started{
-			if Removing{
-				_txt+=TryToRemove
-					if !Removing{
-							_txt+=GenNewUnit
-						if CheckUnit(CurrUnit.x,CurrUnit.y,CurrUnit.r){
-							GameOver = 1
-						}
-					}
-					_txt+=DispTetris
+	if Started{
+		if Removing{
+			_txt+=TryToRemove
+			if !Removing{
+				_txt+=GenNewUnit
+				if CheckUnit(CurrUnit.x,CurrUnit.y,CurrUnit.r){
+					GameOver = 1
+				}
 			}
-			else{
-				_x=CurrUnit.x;_y=CurrUnit.y; _r=CurrUnit.r
-				case iMdir{
-					if iMdir==btmLeft {_x--; }
-					elseif iMdir==btmRight {_x++; }
-					elseif iMdir==btmDown { _y++;    }
-					elseif iMdir==btmCW   { _r++; _r=_r%4;}
-					elseif iMdir==btmCCW  {
-						ck=CheckUnit(_x,_y-1,_r)
-							while ck!=2&&ck!=1{
-								_y++
-								ck=CheckUnit(_x,_y,_r)
-								CurrUnit.x=_x; CurrUnit.y=_y-1; CurrUnit.r=_r
-								_txt+=DispTetris
-							}
+			_txt+=DispTetris
+		}
+		else{
+			_x=CurrUnit.x;_y=CurrUnit.y; _r=CurrUnit.r
+			case iMdir{
+				if iMdir==btmLeft {_x--; }
+				elseif iMdir==btmRight {_x++; }
+				elseif iMdir==btmDown { _y++;    }
+				elseif iMdir==btmCW   { _r++; _r=_r%4;}
+				elseif iMdir==btmCCW  {
+					ck=CheckUnit(_x,_y-1,_r)
+					while ck!=2&&ck!=1{
+						_y++
+						ck=CheckUnit(_x,_y,_r)
+						CurrUnit.x=_x; CurrUnit.y=_y-1; CurrUnit.r=_r
+						_txt+=DispTetris
 					}
 				}
-					ck=CheckUnit(_x,_y,_r)
-					if ck==2{
-						if iMdir==btmDown{
-							BlockBuffer = DispBuffer
-							_txt+=TryToRemove
-						}
-						_txt;return
-					}
-					CurrUnit.x=_x; CurrUnit.y=_y; CurrUnit.r=_r
-					_txt+=DispTetris
-					if  ck==1 && iMdir!=btmDown{
-						BlockBuffer = DispBuffer
-                                               	_txt+=TryToRemove
-					}
+			}
+			ck=CheckUnit(_x,_y,_r)
+			if ck==2{
+				if iMdir==btmDown{
+					BlockBuffer = DispBuffer
+					_txt+=TryToRemove
+				}
+				_txt;return
+			}
+			CurrUnit.x=_x; CurrUnit.y=_y; CurrUnit.r=_r
+			_txt+=DispTetris
+			if  ck==1 && iMdir!=btmDown{
+				BlockBuffer = DispBuffer
+				_txt+=TryToRemove
 			}
 		}
-_txt
+	}
+	_txt
 }
 CheckUnit{//方块判定
 	_x=_argv[0]
@@ -350,7 +351,7 @@ AddScore{//加分
 		elseif iRmv==3{ Score+=TOINT(speed)*50;}
 		elseif iRmv==4{ Score+=TOINT(speed)*80;}
 	}
-		Lines+=iRmv
+	Lines+=iRmv
 }
 CheckGameStatus{//游戏状态
 	if GameOver{
@@ -373,25 +374,25 @@ CheckGameStatus{//游戏状态
 		if _iChanged>=0{
 			Scores[_iChanged] = Score
 		}
-		// OnShowHighScores
+		//OnShowHighScores
 	}
 }
 OnShowHighScores{//显示排行榜
 	_s="\b[0]"
-		for _i=0; _i<NumScores; _i++{
-			if Scores[_i]{
-				_s+="第%(_i+1)名: %(Scores[_i])分\n"
-			}
-			else{
-				break
-				OnPaintBox1
-			}
+	for _i=0; _i<NumScores; _i++{
+		if Scores[_i]{
+			_s+="第%(_i+1)名: %(Scores[_i])分\n"
 		}
-		if _s==""{
-			_s = "没有记录"
+		else{
+			break
+			OnPaintBox1
 		}
-		_s+="\x"
-		_s
+	}
+	if _s==""{
+		_s = "没有记录"
+	}
+	_s+="\x"
+	_s
 }
 OntetrisgameOver{//游戏结束
 	"\0\s[0]\b[0]不玩了吗。"

@@ -26,7 +26,7 @@ OnUserDatabase.List{
 		_pag="\_l[20,-]\q[<<上一页,OnUserDatabase.Page,%(_front),List,%(select)]\_l[93,-]\q[第%(_p)页,OnUserDatabase.PageIndex,%(_tola),List,%(select)]    共%(_tola)页\_l[200,-]\q[下一页>>,OnUserDatabase.Page,%(_next),%(EXT_mode),%(select)]"
 	}
 	_next = TOINT(_argv[3])+9
-	// 列出全部资料
+	//列出全部资料
 	if select == "*" && !_where {
 		_cln = SQLite.Column(_table)
 		_amt = SQLite("-f","SELECT ID FROM %(_table)")
@@ -35,7 +35,7 @@ OnUserDatabase.List{
 			_id[_i] = EVAL("valueex" + _i)
 		}
 		for _i = _j; _i<_next && _i < _amt; _i++ {
-		//取得资料
+			//取得资料
 			_res = SQLite( "-j", "SELECT * FROM %(_table) WHERE ID='%(_id[_i])'")
 			_n = ARRAYSIZE(_res)
 			for _j = 0; _j < _n; _j++ {
@@ -73,7 +73,7 @@ OnUserDatabase.List{
 			_txt += "\n[50]"
 		}
 	}
-	// 列出单(多)栏资料
+	//列出单(多)栏资料
 	elseif !_where  {
 		_cln = SPLIT(select,",")
 		select = REPLACE(select,"'","")
@@ -106,12 +106,12 @@ OnUserDatabase.List{
 			_txt += "\n[50]"
 		}
 	}
-	"\1\b[6]\![quicksession,true]\![set,choicetimeout,0]\![set,autoscroll,disable]\![set,autoscroll,disable]" + _txt + _pag 
+	"\1\b[6]\![quicksession,true]\![set,choicetimeout,0]\![set,autoscroll,disable]\![set,autoscroll,disable]" + _txt + _pag
 }
 /*---------------------------------------------------------------------------------------
- *  函式名　：OnUserDatabase
- *  机能　　：直接存取资料库
- * --------------------------------------------------------------------------------------
+*  函式名　：OnUserDatabase
+*  机能　　：直接存取资料库
+* --------------------------------------------------------------------------------------
 */
 OnUserDatabase{
 	_txt = "\1\s[11]\0\s[0]\b[2]\*\_q\f[bold,true]■数据库编辑■\f[default]\n\n"
@@ -311,7 +311,7 @@ OnUserDatabase.Table{
 	_i=1
 	_c=1
 	if _argv[0]!=NULL
-	_i=TOINT(_argv[0])
+		_i=TOINT(_argv[0])
 	_p=(_i+9)/10
 	_next=TOINT(_argv[0])+10
 	_front=TOINT(_argv[0])-10
@@ -359,8 +359,8 @@ OnUserDatabase.Table{
 					EXT_SelectColumn = TOSTR(EXT_SelectColumn)
 				if _argv[2]!=NULL
 					EXT_SelectColumn=TOSTR(_argv[2])
-					EXT_SearchResult = OnUserDatabase.List(EXT_Table,EXT_SelectColumn,,_i)
-					EXT_SelectColumn = IARRAY
+				EXT_SearchResult = OnUserDatabase.List(EXT_Table,EXT_SelectColumn,,_i)
+				EXT_SelectColumn = IARRAY
 			}
 			when "Return" {
 				_txt += "已返回上一层。\n\n"
@@ -533,7 +533,7 @@ OnUserDatabase.Table.Update{
 		for _i; _i < 17; _i++ {
 			_txt += "\n"
 		}
-                 EXT_InputState = "InputUpdate"
+		EXT_InputState = "InputUpdate"
 		_txt += "\![open,inputbox,OnUserDatabase.Table.Update,-1,%(reference1)]"
 		_txt += "\n◇\q[返回上一层,OnUserDatabase.Table.Update,%(EXT_UpdateID)]◇\q[结束,OnCloseDatabase]\_q\e"
 	}
@@ -590,7 +590,7 @@ OnUserDatabase.Table.Delete{
 	else {
 		EXT_SearchResult = OnUserDatabase.List(EXT_Table,"*")
 		_txt += "请输入想要删除的资料ID。\n\n/
-				\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+		\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 		_txt += "\1\b[4]%(EXT_SearchResult)\0"
 		_txt += "\![open,inputbox,OnUserDatabase.Table.Delete]"
 		_txt += "\n◇\q[返回上一层,OnUserDatabase.Table,,Return]◇\q[结束,OnCloseDatabase]\_q\e"
@@ -598,34 +598,34 @@ OnUserDatabase.Table.Delete{
 	_txt
 }
 /*---------------------------------------------------------------------------------------
- *  函式名　：OnCloseDatabase
- *  机能　　：结束对话框并清除暂存资料
- * --------------------------------------------------------------------------------------
+*  函式名　：OnCloseDatabase
+*  机能　　：结束对话框并清除暂存资料
+* --------------------------------------------------------------------------------------
 */
 OnCloseDatabase{
 	EraseDatabaseVar
 	"使用终了。"
 }
 EraseDatabaseVar{
-	// 泛用
+	//泛用
 	ERASEVAR("EXT_InputState")
-	// Create
+	//Create
 	ERASEVAR("EXT_NewTable")
 	ERASEVAR("EXT_NewColumn")
-	// Rename
+	//Rename
 	ERASEVAR("EXT_RenameingTable")
-	// Table
+	//Table
 	ERASEVAR("EXT_Table")
 	ERASEVAR("EXT_SelectColumn")
 	ERASEVAR("EXT_SearchResult")
-	// Table.Insert
+	//Table.Insert
 	ERASEVAR("EXT_InsertID")
 	ERASEVAR("EXT_InsertTemp")
 	ERASEVAR("EXT_InsertColumn")
-	// Table.Update
+	//Table.Update
 	ERASEVAR("EXT_UpdateID")
 	ERASEVAR("EXT_UpdateColumn")
 	ERASEVAR("EXT_InputUpdate")
-	// Table.Delete
+	//Table.Delete
 	ERASEVAR("EXT_DeleteID")
 }

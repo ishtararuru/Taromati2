@@ -262,18 +262,18 @@ PlayWithLyric{
 		t22=_filemp3
 	if _cmd == "play" || _cmd == "loop" {
 		_txt += "\![raise,OnPlayCmd,%(_cmd),%(_filemp3)]"
-		musicplaystart = GETTICKCOUNT()
+		musicplaystart = GETTICKCOUNT
 		musicplaytime = 0
 		playingmusic = 1
 	}
 	elseif _cmd == "pause" {
 		_txt += "\![sound,pause]"
-		musicplaytime += GETTICKCOUNT() - musicplaystart
+		musicplaytime += GETTICKCOUNT - musicplaystart
 		playingmusic = 2
 	}
 	elseif _cmd == "resume" {
 		_txt += "\![sound,resume]"
-		musicplaystart = GETTICKCOUNT()
+		musicplaystart = GETTICKCOUNT
 		playingmusic = 1
 		if musicplaywithlrc == 1 && lrc != IARRAY {
 			_txt += ShowLrc(musicplaytime)
@@ -296,12 +296,12 @@ MusicHotKey{
 	}
 	elseif _argv[0] == "p" && playingmusic == 1 {
 		_txt += "\![sound,pause]"
-		musicplaytime += GETTICKCOUNT() - musicplaystart
+		musicplaytime += GETTICKCOUNT - musicplaystart
 		playingmusic = 2
 	}
 	elseif _argv[0] == "p" && playingmusic == 2 {
 		_txt += "\![sound,resume]"
-		musicplaystart = GETTICKCOUNT()
+		musicplaystart = GETTICKCOUNT
 		playingmusic = 1
 	}
 	elseif _argv[0] == "s" {
@@ -327,7 +327,7 @@ MusicHotKey{
 }
 //=======================================================
 //Mini播放器程式
-//入口：OnMusicPlayer()
+//入口：OnMusicPlayer
 //=======================================================
 #define		M3UPATH		"profile\\default.m3u8"
 #define		M3U8PATH        "profile\\playlist\\"
@@ -432,7 +432,7 @@ OnMusicPlayMode{
 //打开歌词卡
 //---------------------------------------------------
 OnMusicLrc{
-	_t=GETTICKCOUNT() - musicplaystart + musicplaytime
+	_t=GETTICKCOUNT - musicplaystart + musicplaytime
 	ShowLrc(_t)
 }
 //設定是否顯示歌詞卡

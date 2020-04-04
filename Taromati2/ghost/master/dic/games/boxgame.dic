@@ -1,6 +1,6 @@
 ///////////////////////////////////////////
-////////// 推箱子v2.0游戏辞书
-////////// written by forjane 2009.10.14
+//////////推箱子v2.0游戏辞书
+//////////written by forjane 2009.10.14
 ///////////////////////////////////////////
 #define		MAPFILE		data/box.txt
 #define		PICFILE		data/boxpng.png
@@ -13,7 +13,7 @@ OnBoxGame{
 	}
 	InitBox
 }
-// 初始化推箱子
+//初始化推箱子
 //----------------------------------------------
 InitBox{
 	_txt = "\0\s[26]\b[2]"
@@ -31,20 +31,20 @@ InitBox{
 	}
 	else {
 		playingbox = 1
-                running="playingbox"
+		running="playingbox"
 		_txt +=DrawMap(0) + BoxMenu +"\_l[0,0] \n\_l[0,0] \n\_l[0,0] \n"
 	}
 	_txt
 }
-// 开始玩
+//开始玩
 //----------------------------------------------
 PlayBox{
-_key=reference0
-if _argc
-_key=_argv[0]
+	_key=reference0
+	if _argc
+		_key=_argv[0]
 	case _key {
 		when "up","down","left","right" ,"back"{
-                        _txt = "\C\![quicksession,true]\c[line,2]"
+			_txt = "\C\![quicksession,true]\c[line,2]"
 			_temp = mapstate[mapstatenum]
 			_now = 0
 			_buff = IARRAY
@@ -96,7 +96,7 @@ _key=_argv[0]
 		}
 	}
 }
-// 画出推箱子地图
+//画出推箱子地图
 //----------------------------------------------
 DrawMap{
 	_txt = "\C\b[2]\![quicksession,true]\![set,choicetimeout,0]\c"
@@ -110,7 +110,7 @@ DrawMap{
 	}
 	_txt
 }
-// 在x，y处画类型为type的方块
+//在x，y处画类型为type的方块
 //----------------------------------------------
 DrawBox{
 	_txt = "\C\![quicksession,true]\c\0\b[2]"
@@ -145,7 +145,7 @@ DrawBox{
 	}
 }
 BoxMenu{
-        _txt=""
+	_txt=""
 	_txt+= "\_l[0,0]第%(boxnum)关"
 	_txt += "\_l[0,252]\n\q[◇选关,OnBoxNewGame]\n\q[◇上一关,OnBoxLastGame]\n\q[◇重玩本关,OnBoxTheNewGame]\n\q[◇下一关,OnBoxNextGame]\n\n[half]\q[◇返回游戏列表,OnBoxGameList]\n\q[◇终了,OnBoxGameOver]"
 	_txt

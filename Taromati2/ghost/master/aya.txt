@@ -101,6 +101,9 @@ dic, dic\other\otherserv.dic		//其他服务
 dic, dic\other\story.dic			//讲笑话
 dic, dic\other\miniuse.dic			//便利功能
 
+//开发
+dic, dic\dev\dicforma.dic			//辞书优化
+
 
 //---- 実行ログ ------------------------------------
 // log, aya.log			// 実行ログをayame.logに記録します。開発時には記録しておいたほうが良いです。

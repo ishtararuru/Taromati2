@@ -2,55 +2,55 @@
 //---------↓↓↓↓↓↓↓↓↓---------
 OnFUT{
 	"\0\s[21]其实我也最近才学会TARRO占卜的哦，\w5\w5所以不要太期待啊，\w5\w5\w5\w5\n\n\1\s[13]没人期待了，\w5快开始吧。\w5\w5\w5\w5\n\n\0\s[35]呜呜呜，\w5\w5欺负人家......\w5\w5\w5\w5\w5\w5\n\n\1\s[10]好了，不要卖关子了......\w5\w5看看%(username)%(year)年%(month)月%(day)日的运气怎么样\n\n\0\s[40]那么，\w5橘花要开始了哦~~~~~~\w5\w5\w5\w5\s[41]\w5\w5\w5\w5\n\n/
-		\q[◇开始抽牌,STOPFUT]\n/
-                \q[◇六茫星占卜法,OnTarroTest]\n/
-		\q[◇还是算了,OnOpenMenu,1]\e"
+	\q[◇开始抽牌,STOPFUT]\n/
+	\q[◇六茫星占卜法,OnTarroTest]\n/
+	\q[◇还是算了,OnOpenMenu,1]\e"
 }
 Select.STOPFUT{
-    	F000
-		F010
-		F020
-		F030
-		F040
-		F050
-		F060
-		F070
-		F080
-		F090
-		F100
-		F110
-		F120
-		F130
-		F140
-		F150
-		F160
-		F170
-		F180
-		F190
-		F200
-		F210
-		F001
-		F011
-		F021
-		F031
-		F041
-		F051
-		F061
-		F071
-		F081
-		F091
-		F101
-		F111
-		F121
-		F131
-		F141
-		F151
-		F161
-		F171
-		F181
-		F191
-		F201
-		F211
+	F000
+	F010
+	F020
+	F030
+	F040
+	F050
+	F060
+	F070
+	F080
+	F090
+	F100
+	F110
+	F120
+	F130
+	F140
+	F150
+	F160
+	F170
+	F180
+	F190
+	F200
+	F210
+	F001
+	F011
+	F021
+	F031
+	F041
+	F051
+	F061
+	F071
+	F081
+	F091
+	F101
+	F111
+	F121
+	F131
+	F141
+	F151
+	F161
+	F171
+	F181
+	F191
+	F201
+	F211
 }
 //塔罗占卜 - 六茫星占卜法
 OnTarroTest{
@@ -72,7 +72,7 @@ OnTarroTest{
 	_ay=SIN(30*3.14159/180)*_a
 	_t="①,②,③,④,⑤,⑥,⑦"
 	_r="过去的因缘,现在的状况,将来的预测,应对方式,周遭环境,本人态度,结果"
-        _rx=210
+	_rx=210
 	_txt+="\_l[-,%(_y)]\f[height,16]"
 	_w=IARRAY
 	for _i=0;_i<7;_i++{
@@ -108,7 +108,7 @@ OnTarroTest{
 }
 OnTarroCardReSet{
 	_id=reference0
-        _num=reference1
+	_num=reference1
 	if reference2=="reset"{
 		Tarro=(0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210)
 		OnTarroTest(_id,_num)
@@ -125,8 +125,8 @@ OnTarroCardReSet{
 }
 OnTarroCardShuffle{
 	Tarro=TarroCardShuffle
-        "\0\s[5]洗牌完成\x"
-        --
+	"\0\s[5]洗牌完成\x"
+	--
 	OnTarroTest
 }
 TarroCardShuffle{
@@ -157,15 +157,15 @@ TarroCardShuffle{
 OnTarroCardGet{
 	tarrocard=IARRAY
 	for _i=0;_i<7;_i++{
-                if TOINT(Tarro[_i+6])==0
-                        tarrocard[_i]="000"
+		if TOINT(Tarro[_i+6])==0
+			tarrocard[_i]="000"
 		elseif TOINT(Tarro[_i+6])<100
 			tarrocard[_i]="0"+Tarro[_i+6]
 		else
 			tarrocard[_i]=Tarro[_i+6]
 	}
 	"\0\s[5]抽牌完成\x"
-        --
+	--
 	OnTarroTest(0,0)
 }
 OnTarroAnswer{
@@ -192,10 +192,10 @@ OnTarroAnswer{
 	_txt
 }
 OnTarroOver{
-        ERASEVAR("tarrocard")
-        ERASEVAR("num")
-        --
-        "\s[26]不玩了吗？"
+	ERASEVAR("tarrocard")
+	ERASEVAR("num")
+	--
+	"\s[26]不玩了吗？"
 }
 F000{
 	"\0\s[5]%(username)%(year)年%(month)月%(day)日翻到的牌是......\n\x\w5\w5【0.愚者】【正位】相关语：流浪\w5\w5\w5\w5\w5\w5\n\n\0\s[20]与众不同、幸运、不拘一格、追求新奇的梦想、眼界狭小、勇于冒险、向往自由、有艺术家气质、直攻要害、情感起伏不定、自由恋爱。\w5\w5\w5\w5\n\n\1嘛......一般吧......总体来说，有点神经质。\0\s[5]是呢\e"

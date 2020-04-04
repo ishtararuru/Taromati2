@@ -15,7 +15,7 @@ OnLinkWnd{//入口函数
 	musicid=0
 	LinkWndPlayNum=TOINT(LinkWndPlayNum)
 	LinkWndFlag=""
-        m_level=1
+		m_level=1
 	if TOINT(m_levels[13*link_timemode])==TOINT(ClearMode[13*link_timemode])&&levelname==0
 		LinkWndnd=0
 	if linkwndmusic==0
@@ -84,7 +84,7 @@ CheckLinkWnd{//参数检查
 		MatchNum=TOINT(4+((LinkWndMode+1)*(LinkWndnd+1)*0.25+m_levels[levelsort]*0.5)*2)
 		if m_levels[13*link_timemode]>=7&&levelsort==0
 			MatchNum=TOINT(4+((LinkWndMode+1)*(LinkWndnd+1)*0.25+m_levels*0.5)*2)
-                if levelname==1
+				if levelname==1
 			MatchNum=TOINT(5+(LinkWndnd+m_levels[levelsort]*0.5)*2)
 		if levelname==2
 			MatchNum=TOINT(12+LinkWndnd*12)
@@ -110,7 +110,7 @@ OnInitLinkWnd{//新游戏入口
 	mess=""
 	playLinkWnd=1
 	map=IARRAY
-        _txt+=CheckLinkWnd
+		_txt+=CheckLinkWnd
 	_txt+=Loadm_map
 	zs = 0
 	select=-1
@@ -173,23 +173,23 @@ m_MapSeed.Load{//地图种子读取
 		}
 		else
 			_m_MapSeed.Seed=RandomMapSeed((m_nRow-2)*(m_nCol-2))
-    }
+	}
 	else{
 		LinkWndMode=RAND(4)
 		CheckLinkWnd
-                if LinkWndMapNum[4+LinkWndMode]&&RAND(10)>6{
+				if LinkWndMapNum[4+LinkWndMode]&&RAND(10)>6{
 		     _m_MapSeed.Seed=LoadMapSeed(LinkWndMode,RAND(LinkWndMapNum[4+LinkWndMode])+1,1)
-                }
+				}
 		elseif LinkWndMapNum[LinkWndMode]{
 			_k=RAND(10)
 			if _k>3{
 	                    if LinkWndMode==2||LinkWndMode==3
-                 	       _m_MapSeed.Seed=LoadMapSeed(LinkWndMode,RAND(ClearMode[5+LinkWndMode])+1,0)
-                            else{
+						   _m_MapSeed.Seed=LoadMapSeed(LinkWndMode,RAND(ClearMode[5+LinkWndMode])+1,0)
+							else{
 					_m_levels=ClearMode[5+LinkWndMode]-ClearMode[5+LinkWndMode]/3
 					_m_MapSeed.Seed=LoadMapSeed(LinkWndMode,RAND(_m_levels)+1,0)
 		 	     }
-                        }
+						}
 			else
 				_m_MapSeed.Seed=RandomMapSeed((m_nRow-2-RAND(LinkWndMode*LinkWndMode))*(m_nCol-2-2*RAND(LinkWndMode+1)))
 		}
@@ -211,7 +211,7 @@ Loadm_map{//加载地图
 	else
 		_m_MapSeed.Seed=m_MapSeed.Load
 	if freemode==1
-        	m_MapSeed.Seed=_m_MapSeed.Seed
+			m_MapSeed.Seed=_m_MapSeed.Seed
 	if _m_MapSeed.Seed=="error"{
 		mess="地图错误，地图文件不存在"
 		return
@@ -242,7 +242,7 @@ Loadm_map{//加载地图
 		_nElemID[_i * 2 + 1]=RAND(MatchNum)+1
 		_nElemID[_i * 2] = _nElemID[_i * 2 + 1]
 	}
-        Clearm_map
+		Clearm_map
 	//将方块填入地图
 	for _i=1; _i<m_nRow-1; _i++{
 		for _j=1; _j<m_nCol-1; _j++{
@@ -261,8 +261,8 @@ Loadm_map{//加载地图
 				m_map[_i*m_nCol+_j] = -1
 		}
 	}
-        if CheckNum!=m_Map.nLeft{
-         mess="错误的地图，方块数量不一致"
+		if CheckNum!=m_Map.nLeft{
+		 mess="错误的地图，方块数量不一致"
 	return
 	}
 }
@@ -566,7 +566,7 @@ OnLinkWndOption{//设定
 				mylinkball[LinkBall.select-1]=TOINT(mylinkball[LinkBall.select-1])+2
 			}
 		}
-        	elseif TOINT(shiftmode)==2{
+			elseif TOINT(shiftmode)==2{
 			if _argv[1]!=""
 				LinkBall.select=TOINT(_argv[1])
 			if TOINT(mylinkball[LinkBall.select])>=2&&LinkBall.select<10{
@@ -574,7 +574,7 @@ OnLinkWndOption{//设定
 				mylinkball[LinkBall.select]=TOINT(mylinkball[LinkBall.select])-2*TOINT(mylinkball[LinkBall.select]/2)
 			}
 		}
-        	elseif TOINT(shiftmode)==3{
+			elseif TOINT(shiftmode)==3{
 			if _argv[1]!=""
 				LinkBall.select=TOINT(_argv[1]+1)
 			if TOINT(mylinkball[LinkBall.select])>=1&&LinkBall.select>0{
@@ -668,7 +668,7 @@ OnLinkWndOption{//设定
 			}
 			_txt+="\n[20]"
 			_a=1
-                        _allrewards=0
+						_allrewards=0
 			foreach LinkBallInfo;_i{
 				_txt+="\_l[%(_i[0]*27)]"
 				_txt+="%(TOINT(_i[2]))"
@@ -732,8 +732,8 @@ OnLinkWndOption{//设定
 				_txt+="\q[删除最新,OnLinkMapSave,del,%(LinkWndMode),%(LinkWndMapNum[LinkWndMode+4])]\n"
 		}
 		_txt+="该模式下最高闯关数:%(TOINT(m_levelstop[levelsort]))\n"
-         }
-         else{
+		 }
+		 else{
 			 _txt+="方块类型：\n"
 			 _matchnum=IARRAY
 			 for _i=5;_i<=36;_i++{
@@ -910,8 +910,8 @@ OnLButtonDown{//鼠标操作
 			if IsLink(m_nX,m_nY,m_nx,m_ny){
 				_txt+=ClearTwo(m_nX,m_nY,m_nx,m_ny)
 				//map=m_map
-                                if link_timemode==1
-                                link_timemax+=3000
+								if link_timemode==1
+								link_timemax+=3000
 				if linkwndmusic!=2
 					_txt+=PlayWithLyric("play",0,"data\LinkWnd\match.wav")
 				//_txt+="\![sound,play,data\LinkWnd\match.wav]"
@@ -976,7 +976,7 @@ BitBlt{
 	_nHeight=_argv[3]
 	_nXSrc=_argv[4]
 	_nYSrc=_argv[5]
-        "\__q\_b[%(_PIC),inline,--clipping=%(_nXSrc) %(_nYSrc) %(_nXSrc+_nWidt) %(_nYSrc+_nHeight)]\__q"
+		"\__q\_b[%(_PIC),inline,--clipping=%(_nXSrc) %(_nYSrc) %(_nXSrc+_nWidt) %(_nYSrc+_nHeight)]\__q"
 }
 DrawHint{
 	_pt1.i=_argv[0]
@@ -1039,7 +1039,7 @@ WinCheck{//胜利检查
 		}
 		else{
 			playLinkWnd=4
-                        if m_levels[levelsort]>ClearMode[levelsort]
+						if m_levels[levelsort]>ClearMode[levelsort]
 			m_levels[levelsort]=ClearMode[levelsort]
 			if TOINT(m_levels[levelsort])>=TOINT(levelmax[levelsort])
 				m_levels[levelsort]=TOINT(levelmax[levelsort]-1)
@@ -1049,7 +1049,7 @@ WinCheck{//胜利检查
 	}
 	if (link_timemode==0||link_timemode==1)&&link_timebar<=0&&!IsWin{
 			playLinkWnd=4
-                   if m_levels[levelsort]>ClearMode[levelsort]
+				   if m_levels[levelsort]>ClearMode[levelsort]
 			m_levels[levelsort]=ClearMode[levelsort]
 			if TOINT(m_levels[levelsort])>=TOINT(levelmax[levelsort])
 				m_levels[levelsort]=TOINT(levelmax[levelsort]-1)
@@ -1093,7 +1093,7 @@ WinCheck{//胜利检查
 					}
 				}
 	                }
- 			if LinkWndnd==0{
+			if LinkWndnd==0{
 				_txt+="\![sound,stop]"
 				_txt+="\![sound,wait]"
 			}
@@ -1255,7 +1255,7 @@ FindPath{
 	_pte.i=m_nx
 	_pte.j=m_ny
 	_map=m_map
- 	_map2=m_map
+	_map2=m_map
 	int dr = 0
 	//ElemType e, et
 	//InitStack(s)
@@ -1691,7 +1691,7 @@ IsLink{
 	0;return
 }
 DrawFoot{
-       _foot="data\LinkWnd\foot.png"
+	   _foot="data\LinkWnd\foot.png"
 	_txt=""
 	_k=0
 	for  _i=1; _i<m_nRow-1; _i++{
@@ -1950,14 +1950,14 @@ CheckLinkMapNum{//地图数量检查
 		_buff = FREAD(_mapfile)
 		while _buff!=-1{
 			_buff = FREAD(_mapfile)
-                if "#0" _in_ _buff
-                    LinkWndMapNum[4]++
+				if "#0" _in_ _buff
+					LinkWndMapNum[4]++
 				if "#1" _in_ _buff
 					LinkWndMapNum[5]++
-                if "#2" _in_ _buff
+				if "#2" _in_ _buff
 					LinkWndMapNum[6]++
 				if "#3" _in_ _buff
-                    LinkWndMapNum[7]++
+					LinkWndMapNum[7]++
 		}
 		FCLOSE(_mapfile)
 	}
@@ -1965,14 +1965,14 @@ CheckLinkMapNum{//地图数量检查
 LoadMapSeed{
 	_mode= "#"+_argv[0]
 	_num =""+_argv[1]
-        _sw=_argv[2]
+		_sw=_argv[2]
 	CheckLinkMapNum
 	_txt = ""
-        _mapfile=""
+		_mapfile=""
 	if _sw==0
 	_mapfile = "data/LinkWnd/mapseed.txt"
 	else
-        _mapfile="profile/selfmapseed.txt"
+		_mapfile="profile/selfmapseed.txt"
 	if FOPEN(_mapfile,"r") {
 		_buff = FREAD(_mapfile)
 		while _buff != -1 && (_buff[0] != _mode || _buff[1] != _num) {
@@ -2010,7 +2010,7 @@ OnLinkMapEditor{
 	CheckLinkMapNum
 	playLinkWnd=3
 	if freemode==0
-        	m_MapSeed.Seed=m_MapSeed.Load
+			m_MapSeed.Seed=m_MapSeed.Load
 	LinkMapEditorShow
 }
 LinkMapEditorShow{//地图绘图
@@ -2072,19 +2072,19 @@ _t=" 普通  ,地图种子插件"[TOINT(linkmapmode)]
 	_PIC=("data/LinkWnd/0.bmp","data/LinkWnd/1.bmp","data/LinkWnd/border.bmp","data/LinkWnd/border_select.bmp")
 if TOINT(linkmapmode)==0{
 	_txt+="\_l[00,28]\q[互换,OnSetLinkMap,exchange]"
-        _txt+="\_l[35,-]\q[Y对称,OnSetLinkMap,Y-copy]"
+		_txt+="\_l[35,-]\q[Y对称,OnSetLinkMap,Y-copy]"
 	_txt+="\_l[75,-]\q[X对称,OnSetLinkMap,X-copy]"
 	_txt+="\_l[120,-]\q[斜线对称,OnSetLinkMap,Z-copy]"
-        _txt+="\_l[180,-]\q[镜像,OnSetLinkMap,mirror]"
+		_txt+="\_l[180,-]\q[镜像,OnSetLinkMap,mirror]"
 	_txt+="\_l[220,-]\q[倒置,OnSetLinkMap,invert]"
-        _txt+="\_l[260,-]\q[斜角,OnSetLinkMap,corner]"
+		_txt+="\_l[260,-]\q[斜角,OnSetLinkMap,corner]"
 	_txt+="\_l[0,50]\__q[OnSetLinkMap,select.mapseed,0]\_b[%(_PIC[0]),inline,--option=opaque,--clipping=0 0 20 20]\__q"
 	_txt+="\_l[7,54]0"
 	_txt+="\_l[25,55]\q[全部置0,OnSetLinkMap,allset,0]"
-        _txt+="\_l[70,55]\q[行置0,OnSetLinkMap,rowset,0]"
+		_txt+="\_l[70,55]\q[行置0,OnSetLinkMap,rowset,0]"
 	_txt+="\_l[110,55]\q[列置0,OnSetLinkMap,colset,0]"
 	_txt+="\_l[145,50]\__q[OnSetLinkMap,select.mapseed,1]\_b[%(_PIC[1]),inline,--option=opaque,--clipping=0 0 20 20]\__q"
-        _txt+="\_l[152,54]1"
+		_txt+="\_l[152,54]1"
 	_txt+="\_l[170,55]\q[全部置1,OnSetLinkMap,allset,1]"
 	_txt+="\_l[215,55]\q[行置1,OnSetLinkMap,rowset,1]"
 	_txt+="\_l[255,55]\q[列置1,OnSetLinkMap,colset,1]"
@@ -2100,118 +2100,118 @@ else{
 	_txt
 }
 OnSetLinkMap{//地图设定
-    _mode=reference0
-    select.mapseed=reference1
-    _j=reference2
-    _i=reference3
-    select=_i*(m_nCol-2)+_j
-    _m_MapSeed.Seed=IARRAY
-    if _argc>0{
+	_mode=reference0
+	select.mapseed=reference1
+	_j=reference2
+	_i=reference3
+	select=_i*(m_nCol-2)+_j
+	_m_MapSeed.Seed=IARRAY
+	if _argc>0{
 		_mode=_argv[0]
-                select.mapseed=_argv[1]
+				select.mapseed=_argv[1]
 		_j=_argv[1]
 		_i=_argv[2]
-    }
-    if _mode=="linkmapmode"{
+	}
+	if _mode=="linkmapmode"{
 linkmapmode=(TOINT(linkmapmode)+1)%2
-    }
-    elseif _mode=="select.mapseed"{
+	}
+	elseif _mode=="select.mapseed"{
 		select.mapseed=reference1
 		SetLinkMap.mode="SetLinkMap.Click"
-    }
-    elseif _mode=="SetLinkMap.Click"{
+	}
+	elseif _mode=="SetLinkMap.Click"{
 		m_MapSeed.Seed[_i*(m_nCol-2)+_j]=select.mapseed
-    }
-    elseif _mode=="allset"{
+	}
+	elseif _mode=="allset"{
 		for  _i=0; _i<m_nRow-2; _i++{
 			for _j=0; _j<m_nCol-2; _j++{
 				m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(reference1)
 			}
 		}
-    }
-    elseif _mode=="rowset"{
-        SetLinkMap.mode="rowset"
-        if select!=0{
+	}
+	elseif _mode=="rowset"{
+		SetLinkMap.mode="rowset"
+		if select!=0{
 	    for _j=0; _j<m_nCol-2; _j++{
 		m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(reference1)
-  	    }
-        }
-    }
+		}
+		}
+	}
    elseif _mode=="colset"{
-        SetLinkMap.mode="colset"
-        if select!=0{
+		SetLinkMap.mode="colset"
+		if select!=0{
 	   for  _i=0; _i<m_nRow-2; _i++{
 		m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(reference1)
-  	    }
-        }
-    }
-    elseif _mode=="exchange"{
+		}
+		}
+	}
+	elseif _mode=="exchange"{
 		for  _i=0; _i<m_nRow-2; _i++{
 			for _j=0; _j<m_nCol-2; _j++{
 				m_MapSeed.Seed[_i*(m_nCol-2)+_j]=1-TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
 			}
 		}
-    }
-    elseif _mode=="mirror"{
+	}
+	elseif _mode=="mirror"{
 		for  _i=0; _i<m_nRow-2; _i++{
 			for _j=0; _j<(m_nCol-2)/2; _j++{
-                                _k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
-                                m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j])
-                                m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j]=_k
+								_k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
+								m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j])
+								m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j]=_k
 			}
 		}
-    }
+	}
   elseif _mode=="invert"{
 		for  _i=0; _i<(m_nRow-2)/2; _i++{
 			for _j=0; _j<m_nCol-2; _j++{
-                                _k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
-                                m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j])
-                                m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j]=_k
+								_k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
+								m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j])
+								m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j]=_k
 			}
 		}
-    }
+	}
   elseif _mode=="corner"{
 		for  _i=0; _i<m_nRow-2; _i++{
 			for _j=_i; _j<m_nCol-2; _j++{
-                                _k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
-                                m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_j*(m_nCol-2)+_i])
-                                m_MapSeed.Seed[_j*(m_nCol-2)+_i]=_k
+								_k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
+								m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_j*(m_nCol-2)+_i])
+								m_MapSeed.Seed[_j*(m_nCol-2)+_i]=_k
 			}
 		}
-    }
+	}
  elseif _mode=="Y-copy"{
 		for  _i=0; _i<m_nRow-2; _i++{
 			for _j=0; _j<(m_nCol-2)/2; _j++{
-                                _k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
-                                if TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j])==1
-                                      m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j])
-                                if _k==1
-                                m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j]=_k
+								_k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
+								if TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j])==1
+									  m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j])
+								if _k==1
+								m_MapSeed.Seed[_i*(m_nCol-2)+m_nCol-3-_j]=_k
 			}
 		}
-      }
-     elseif _mode=="X-copy"{
+	  }
+	 elseif _mode=="X-copy"{
 		for  _i=0; _i<(m_nRow-2)/2; _i++{
 			for _j=0; _j<m_nCol-2; _j++{
-                                _k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
-                                if TOINT(m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j])==1
-                                   m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j])
-                                if _k==1
-                                m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j]=_k
+								_k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
+								if TOINT(m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j])==1
+								   m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j])
+								if _k==1
+								m_MapSeed.Seed[(m_nRow-3-_i)*(m_nCol-2)+_j]=_k
 			}
 		}
-    }
-       elseif _mode=="Z-copy"{
+	}
+	   elseif _mode=="Z-copy"{
 		for  _i=0; _i<m_nRow-2; _i++{
 			for _j=_i; _j<m_nCol-2; _j++{
-                                _k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
-                                if TOINT(m_MapSeed.Seed[_j*(m_nCol-2)+_i])==1
-                                  m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_j*(m_nCol-2)+_i])
-                                if _k==1
-                                m_MapSeed.Seed[_j*(m_nCol-2)+_i]=_k
+								_k=TOINT(m_MapSeed.Seed[_i*(m_nCol-2)+_j])
+								if TOINT(m_MapSeed.Seed[_j*(m_nCol-2)+_i])==1
+								  m_MapSeed.Seed[_i*(m_nCol-2)+_j]=TOINT(m_MapSeed.Seed[_j*(m_nCol-2)+_i])
+								if _k==1
+								m_MapSeed.Seed[_j*(m_nCol-2)+_i]=_k
 			}
 		}
-    }
+	}
 	LinkMapEditorShow
 }
 OnLinkMapSave{//地图保存
@@ -2376,8 +2376,8 @@ OnLinkMapSave{//地图保存
 			}
 		}
 		FCLOSE(_mapfile2)
-        _t=FCOPY(_mapfile2,"profile")
-        OnLinkWndOption
+		_t=FCOPY(_mapfile2,"profile")
+		OnLinkWndOption
 	}
 	FCHARSET(1)
 }
@@ -2392,7 +2392,7 @@ LinkBar{
 	if _argv[2] != "" {
 		_maxlen = _argv[2]
 	}
- 	_txt = ""
+	_txt = ""
 	_length = _percent * _maxlen / _max
 	if _length > 0 {
 		if _length > _maxlen {
@@ -2400,10 +2400,10 @@ LinkBar{
 		}
 		_txt += "\_b[PATH\linkbar.png,inline,--option=opaque,--clipping=%(134 - _length) 0 134 10]"
 	}
-        if _length <0
-       _length=0
+		if _length <0
+	   _length=0
 	if _length < _maxlen  {
 		_txt += "\_b[PATH\linkbar_blank.png,inline,--option=opaque,--clipping=0 0 %(_maxlen - _length) 10]"
-        }
+		}
 	_txt
 }

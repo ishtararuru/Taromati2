@@ -1,6 +1,6 @@
 ///////////////////////////////////////////
-////////// 花语和诞生花辞书
-////////// written by forjane 2009.09.02
+//////////花语和诞生花辞书
+//////////written by forjane 2009.09.02
 ///////////////////////////////////////////
 //诞生花
 //------------------------------------------------
@@ -184,7 +184,7 @@ OnMenuHyacinth{
 	\q[◇淡紫色风信子,OnFlowerHyacinth,2]\n/
 	\q[◇白色风信子,OnFlowerHyacinth,3]\n/
 	\q[◇红色风信子,OnFlowerHyacinth,4]\n/
- 	\q[◇桃红色风信子,OnFlowerHyacinth,5]\n/
+	\q[◇桃红色风信子,OnFlowerHyacinth,5]\n/
 	\q[◇粉色风信子,OnFlowerHyacinth,6]\n/
 	\q[◇黄色风信子,OnFlowerHyacinth,7]\n/
 	\q[◇蓝色风信子,OnFlowerHyacinth,8]\n/
@@ -262,6 +262,7 @@ OnMenuOthers{
 	\q[◇吊兰,OnFlowerOthers,19]\n/
 	\q[◇柽柳,OnFlowerOthers,20]\n/
 	\q[◇枸橼,OnFlowerOthers,21]\n/
+	
 	\q[◇火鹤,OnFlowerOthers,22]\n/
 	\q[◇菖蒲,OnFlowerOthers,23]\n/
 	\q[◇栀子,OnFlowerOthers,24]\n/
@@ -434,6 +435,7 @@ OnFlowerOthers{
 	"\0\s[20]\b[1]柽柳：罪\n\n",/
 	"\0\s[20]\b[1]枸橼：不懂幽默的美人\n\n",/
 	"\0\s[20]\b[1]火鹤：燃烧的心，热情，烦恼，关怀\n\n",/
+	
 	"\0\s[20]\b[1]菖蒲：信仰者的幸福\n\n",/
 	"\0\s[20]\b[1]栀子：“喜悦”，就如生机盎然的夏天充满了未知的希望和喜悦\n\n",/
 	"\0\s[20]\b[1]喜迎贵客、好客\n\n")[reference0]

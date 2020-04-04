@@ -1,4 +1,10 @@
 //by steve02081504
+ISDIR{
+	FATTRIB(_argv[0])[2]
+}
+FILEEXIST{
+	FATTRIB(_argv[0])!=-1
+}
 DELDIR{
 	_attrib=FATTRIB(_argv[0])
 	if _attrib!=-1{

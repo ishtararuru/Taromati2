@@ -119,7 +119,7 @@ OnKeyPress{
 		SnakeKey
 	}
 	elseif playHuanRongDao{
-	  OnKeyMovement
+		OnKeyMovement
 	}
 	elseif rpggame{
 		if battlemode==0{
@@ -318,6 +318,8 @@ OnCalculateVar{
 		return
 	_var = reference0[0,'=']
 	_var = _var[0,'[']
+	if _argv[0]
+		_var=_argv[0]
 	_func = reference0[0,'(']
 	if ISVAR(_var) == 0 && ISFUNC(_func) == 0 && reference1 != 'force_run'{
 		temp=reference0
@@ -336,8 +338,7 @@ OnCalculateVar{
 			--
 			_t
 			--
-			FUNCTIONEX('saori\textcopy.dll',__t)
-			'\_q\n以上内容已复制进粘贴板'
+			'\_q\n\q[◇复制结果,OnCopy,"'+__t+'"]\n\q[◇复制表达式,OnCopy,"'+reference0+'"]'
 		}
 	}
 }
